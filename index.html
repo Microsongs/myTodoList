@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+      }
+      .template {
+        width: 600px;
+        height: 600px;
+      }
+      .todo-list-item {
+        width: 100%;
+        font-size: 14px;
+        border: 1px solid #f0f0f0;
+        color: #000000;
+      }
+      .red {
+        background-color: red;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex flex-column">
+      <div class="input-group">
+        <input id="todo" class="form-control" placeholder="To Do " />
+        <button id="red" class="btn btn-danger">R</button>
+        <button id="green" class="btn btn-secondary">G</button>
+        <button id="blue" class="btn btn-primary">B</button>
+        <button id="confirm" class="btn btn-info">확인</button>
+      </div>
+      <div id="list">
+        <div class="todo-list-item p-2 text-center">부트스트랩 공부하기</div>
+      </div>
+    </div>
+    <!--x표시를 누르면 x, 수정을 누르면 수정, (todo list의 스타일링 없을 때는 아무것도 없도록), 버튼의 색 RGB background 설정-->
+    <!--스크립트-->
+    <script>
+      var index = 0;
+      var color = "white";
+      //Red
+      document.querySelector("#red").onclick = function() {
+        color = "red";
+      };
+
+      //Green
+      document.querySelector("#green").onclick = function() {
+        color = "green";
+      };
+
+      //blue
+      document.querySelector("#blue").onclick = function() {
+        color = "blue";
+      };
+
+      //확인 버튼
+      document.querySelector("#confirm").onclick = function() {
+        //callback function
+        const message = document.querySelector("#todo").value;
+        console.log(message);
+        if (message.length >= 1) {
+          document.querySelector("#list").innerHTML +=
+            "<div id = hi" +
+            index +
+            ' class = "todo-list-item p-2 text-center ' +
+            color +
+            '">' +
+            message +
+            "</div>";
+          index++;
+          document.querySelector("#todo").value = "";
+        }
+      };
+    </script>
+  </body>
+</html>

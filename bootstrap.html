@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+        background-color: pink;
+      }
+      .container {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-extend-lg navbar-light bg-dark">
+      hello Bootstrap
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-3 bg-info">hello 3</div>
+        <div class="col-9 bg-primary">hello 9</div>
+      </div>
+      <div class="row">
+        <div class="col-2 bg-danger">hello 2</div>
+        <div class="col-8 bg-secondary">hello 8</div>
+        <div class="col-2 bg-danger">hello 2</div>
+      </div>
+      <div class="row">
+        <div class="col-5"></div>
+        <button class="btn btn-primary btn-lg col-2">버튼</button>
+        <div class="col-5"></div>
+      </div>
+      <div class="row">
+        <!--sm은 smartphone md-tablet lg는 tablet&desktop x1은 desktop p는 padding + 방향 가능-->
+        <!-- padding도 pt-md-0처럼 각 기기별 설정 가능 -->
+        <!-- d는 display를 뜻함 그래서 d-md-block처럼 각 기기별 설정 가능-->
+        <!-- flex 등으로도 설정이 가능하다. 적용도 가능-->
+        <div
+          class="col-12 col-sm-6 col-md-4 col-lg-3 col-x1-1 bg-info p-1 d-flex justify-content-center justify-content-md-start d-md-block"
+        >
+          하이
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
