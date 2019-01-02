@@ -34,6 +34,17 @@
       .green {
         background-color: green;
       }
+
+      .del {
+        width: 80px;
+        height: 30px;
+        float: right;
+      }
+      .fix {
+        width: 80px;
+        height: 30px;
+        float: right;
+      }
     </style>
   </head>
   <body>
@@ -68,7 +79,6 @@
       document.querySelector("#blue").onclick = function() {
         color = "blue";
       };
-
       //확인 버튼
       document.querySelector("#confirm").onclick = function() {
         //callback function
@@ -82,11 +92,55 @@
             color +
             '">' +
             message +
+            "<button class='btn btn-dark fix' onclick='fix(this)'>수정</button>" +
+            "<button class='btn btn-secondary del' onclick ='deleteBtn(this)'>삭제</button>" +
             "</div>";
           index++;
           document.querySelector("#todo").value = "";
         }
       };
+
+      //삭제 버튼
+      function deleteBtn(e) {
+        /*
+        var tempDel = document
+          .getElementById(e.getAttribute("id"))
+          .getAttribute("id");
+        */
+        //var tempDel = e.parentNode;
+        var temp = e.parentNode;
+        var tempDel = document
+          .getElementById(temp.getAttribute("id"))
+          .getAttribute("id");
+        var parent = temp.parentNode;
+        //$("#" + tempDel).remove();
+        temp.innerHTML = "";
+      }
+
+      //수정 버튼
+      function fix(e) {
+        var temp = e.parentNode;
+        var tempDel = document
+          .getElementById(temp.getAttribute("id"))
+          .getAttribute("id");
+        var input = prompt("변경될 내용 입력", "");
+        temp.innerHTML =
+          "<div id = " +
+          tempDel +
+          ' class = "todo-list-item p-2 text-center ' +
+          color +
+          '">' +
+          input +
+          "<button class='btn btn-dark fix' onclick='fix(this)'>수정</button>" +
+          "<button class='btn btn-secondary del' onclick ='deleteBtn(this)'>삭제</button>" +
+          "</div>";
+        /*
+        var tempClass = document.getElementById(tempDel);
+        console.log(tempDel);
+        console.log(tempClass);
+        */
+        //
+      }
     </script>
   </body>
 </html>
