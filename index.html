@@ -34,16 +34,8 @@
       .green {
         background-color: green;
       }
-
-      .del {
+      .button {
         width: 80px;
-        height: 30px;
-        float: right;
-      }
-      .fix {
-        width: 80px;
-        height: 30px;
-        float: right;
       }
     </style>
   </head>
@@ -57,13 +49,20 @@
         <button id="confirm" class="btn btn-info">확인</button>
       </div>
       <div id="list">
-        <div class="todo-list-item p-2 text-center">부트스트랩 공부하기</div>
+        <div class = 'd-flex justify-content-between white'>
+          <div></div>
+          <div class="todo-list-item p-2 text-center ">부트스트랩 공부하기</div><div class="d-flex">
+            <button class='btn btn-dark button' onclick='fix(event.target)'>수정</button>
+            <button class='btn btn-secondary button' onclick='deleteBtn(event.target)'>삭제</button>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <!--x표시를 누르면 x, 수정을 누르면 수정, (todo list의 스타일링 없을 때는 아무것도 없도록), 버튼의 색 RGB background 설정-->
     <!--스크립트-->
     <script>
-      var index = 0;
+      var index = 1;
       var color = "white";
       //Red
       document.querySelector("#red").onclick = function() {
@@ -83,17 +82,20 @@
       document.querySelector("#confirm").onclick = function() {
         //callback function
         const message = document.querySelector("#todo").value;
-        console.log(message);
+        console.log(color);
         if (message.length >= 1) {
           document.querySelector("#list").innerHTML +=
-            "<div id = hi" +
-            index +
-            ' class = "todo-list-item p-2 text-center ' +
+            "<div class = 'd-flex justify-content-between " +
             color +
-            '">' +
+            "'>" +
+            "<div></div><div class = 'todo-list-item p-2 text-center '>" +
             message +
-            "<button class='btn btn-dark fix' onclick='fix(this)'>수정</button>" +
-            "<button class='btn btn-secondary del' onclick ='deleteBtn(this)'>삭제</button>" +
+            "</div>" +
+            "<div class='d-flex'>" +
+            "<button class='btn btn-dark button' onclick='fix(event.target)'>수정</button>" +
+            "<button class='btn btn-secondary button' onclick='deleteBtn(event.target)'>삭제</button>" +
+            "</div>" +
+            "</div>" +
             "</div>";
           index++;
           document.querySelector("#todo").value = "";
@@ -101,45 +103,19 @@
       };
 
       //삭제 버튼
-      function deleteBtn(e) {
-        /*
-        var tempDel = document
-          .getElementById(e.getAttribute("id"))
-          .getAttribute("id");
-        */
-        //var tempDel = e.parentNode;
-        var temp = e.parentNode;
-        var tempDel = document
-          .getElementById(temp.getAttribute("id"))
-          .getAttribute("id");
-        var parent = temp.parentNode;
-        //$("#" + tempDel).remove();
-        temp.innerHTML = "";
+      function deleteBtn(eventTarget) {
+        var temp = eventTarget.parentNode.parentNode;
+
+        if (temp.parentNode) {
+          temp.parentNode.removeChild(temp);
+        }
       }
 
       //수정 버튼
-      function fix(e) {
-        var temp = e.parentNode;
-        var tempDel = document
-          .getElementById(temp.getAttribute("id"))
-          .getAttribute("id");
-        var input = prompt("변경될 내용 입력", "");
-        temp.innerHTML =
-          "<div id = " +
-          tempDel +
-          ' class = "todo-list-item p-2 text-center ' +
-          color +
-          '">' +
-          input +
-          "<button class='btn btn-dark fix' onclick='fix(this)'>수정</button>" +
-          "<button class='btn btn-secondary del' onclick ='deleteBtn(this)'>삭제</button>" +
-          "</div>";
-        /*
-        var tempClass = document.getElementById(tempDel);
-        console.log(tempDel);
-        console.log(tempClass);
-        */
-        //
+      function fix(eventTarget) {
+        var change = event.target.parentNode.parentNode.children[1];
+        var inputString = prompt("변경할 내용 입력", "");
+        change.innerText = inputString;
       }
     </script>
   </body>
